@@ -3,19 +3,37 @@ import styled from "styled-components";
 import { StyledImage } from "./StyledImage.js";
 
 const Article = styled.article`
-  border: 5px solid black;
-  border-radius: 0.8rem;
-  padding: 0.5rem;
+  border-radius: 0.6rem;
+  background-color: white;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.12);
+  padding-bottom: 12px;
+
+  & > div > img {
+    transform: scale(1);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  &:hover > div > img {
+    transform: scale(1.1);
+    transition: transform 0.6s ease-in-out;
+  }
+
+  &:hover {
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.18);
+    transition: box-shadow 0.5s ease-in-out;
+  }
+
+  & p {
+    padding-left: 12px;
+    color: grey;
+  }
 `;
 
 const ImageContainer = styled.div`
   position: relative;
-  height: 10rem;
-`;
-
-const Figure = styled.figure`
-  position: relative;
-  margin: 0;
+  min-height: 10rem;
+  height: 40vh;
+  overflow: hidden;
 `;
 
 const Anchor = styled.a`
@@ -42,23 +60,27 @@ const ScreenReaderOnly = styled.span`
   border-width: 0;
 `;
 
+const Figcaption = styled.h3`
+  padding-left: 12px;
+  margin-block-end: unset;
+  color: rgb(66, 135, 245);
+`;
+
 export default function Card({ name, image, location, id }) {
   return (
     <Article>
-      <Figure>
-        <ImageContainer>
-          <StyledImage
-            src={image}
-            fill
-            sizes="(max-width: 768px) 100vw,
+      <ImageContainer>
+        <StyledImage
+          src={image}
+          fill
+          sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
               33vw"
-            alt=""
-          />
-        </ImageContainer>
-        <figcaption>{name}</figcaption>
-      </Figure>
-      <p>Location: {location}</p>
+          alt=""
+        />
+      </ImageContainer>
+      <Figcaption>{name}</Figcaption>
+      <p>📍 {location}</p>
       <Link href={`places/${id}`} passHref legacyBehavior>
         <Anchor>
           <ScreenReaderOnly>More Info</ScreenReaderOnly>
