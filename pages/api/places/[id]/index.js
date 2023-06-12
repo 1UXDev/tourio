@@ -24,4 +24,14 @@ export default async function handler(request, response) {
     // successfully loaded?
     return response.status(200).json(place);
   }
+
+  // --- Defining PATCH APIroute ---
+  if (request.method === "PATCH") {
+    // Assign the place with corresponding id to place
+    const placeUpdate = await Place.findByIdAndUpdate(id, {
+      $set: request.body,
+    });
+
+    return response.status(200).json(placeUpdate);
+  }
 }
