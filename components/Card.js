@@ -63,6 +63,7 @@ const ScreenReaderOnly = styled.span`
 const Figcaption = styled.h3`
   padding-left: 12px;
   margin-block-end: unset;
+  margin-block-start: 12px;
   color: rgb(66, 135, 245);
 `;
 

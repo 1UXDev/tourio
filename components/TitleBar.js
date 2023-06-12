@@ -1,15 +1,5 @@
 import styled from "styled-components";
-import { Roboto_Condensed, Yuji_Boku } from "@next/font/google";
-
-const RobotoCondensed = Roboto_Condensed({
-  subsets: ["latin"],
-  weight: "700",
-});
-
-const Yuji = Yuji_Boku({
-  subsets: ["latin"],
-  weight: "400",
-});
+import { DancingScript } from "../styles";
 
 const Headline = styled.h1`
   position: fixed;
@@ -22,8 +12,8 @@ const Headline = styled.h1`
   padding-bottom: 8px;
   text-align: center;
   z-index: 1;
-  font-size: 2.5em;
-  font-family: ${Yuji.style.fontFamily};
+  font-size: 3.2em;
+  font-family: ${DancingScript.style.fontFamily};
   color: rgb(66, 135, 245);
 `;
 

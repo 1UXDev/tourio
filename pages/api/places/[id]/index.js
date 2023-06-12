@@ -8,7 +8,7 @@ export default async function handler(request, response) {
   const { id } = request.query;
 
   if (!id) {
-    return;
+    console.log("waiting for ID");
   }
 
   // --- Defining GET APIroute ---
