@@ -26,6 +26,12 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
+        <title>Tourio</title>
+        <meta property="og:title" content="Tourio" key="title" />
+        <meta
+          name="description"
+          content="Find and Save your Favorite Places!"
+        ></meta>
         <Head />
         <body>
           <Main />
