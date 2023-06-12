@@ -27,11 +27,19 @@ export default async function handler(request, response) {
 
   // --- Defining PATCH APIroute ---
   if (request.method === "PATCH") {
-    // Assign the place with corresponding id to place
+    // Update the corresponding item
     const placeUpdate = await Place.findByIdAndUpdate(id, {
       $set: request.body,
     });
 
     return response.status(200).json(placeUpdate);
+  }
+
+  // --- Defining DELETE APIroute ---
+  if (request.method === "DELETE") {
+    // Delete the corresponding item
+    const placeDelete = await Place.findByIdAndDelete(id);
+
+    response.status(200).json(placeDelete);
   }
 }
