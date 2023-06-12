@@ -1,4 +1,19 @@
 import { createGlobalStyle } from "styled-components";
+import { Roboto_Condensed, Yuji_Boku, Dancing_Script } from "@next/font/google";
+
+const RobotoCondensed = Roboto_Condensed({
+  subsets: ["latin"],
+  weight: "700",
+});
+
+const Yuji = Yuji_Boku({
+  subsets: ["latin"],
+  weight: "400",
+});
+export const DancingScript = Dancing_Script({
+  subsets: ["latin"],
+  weight: "700",
+});
 
 export default createGlobalStyle`
   *,
@@ -25,5 +40,13 @@ export default createGlobalStyle`
 
   button{
     cursor: pointer;
+  }
+
+  #map{
+    margin-bottom:24px;
+  }
+  h1,h2,h3{
+    font-family: ${DancingScript.style.fontFamily};
+    font-size:1.8em;
   }
 `;

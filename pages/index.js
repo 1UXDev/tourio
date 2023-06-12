@@ -38,6 +38,12 @@ const FixedLink = styled(StyledLink)`
   position: fixed;
   bottom: 50px;
   right: 50px;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.08);
+  transition: 0.2s ease-in;
+
+  &:hover {
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.16);
+  }
 `;
 export default function Home() {
   const { data } = useSWR("/api/places", { fallbackData: [] });
@@ -47,7 +53,7 @@ export default function Home() {
       <List role="list">
         {data.map((place) => {
           return (
-            <ListItem key={place.id}>
+            <ListItem key={place._id}>
               <Card
                 name={place.name}
                 image={place.image}
