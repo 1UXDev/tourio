@@ -11,7 +11,7 @@ export default async function handler(request, response) {
     return;
   }
 
-  //Defining GET APIroute
+  // --- Defining GET APIroute ---
   if (request.method === "GET") {
     // Assign the place with corresponding id to place
     const place = await Place.findById(id);

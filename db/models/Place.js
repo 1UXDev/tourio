@@ -5,8 +5,10 @@ const { Schema } = mongoose;
 
 // define the Schema (according to the input data we got from project)
 const placeSchema = new Schema({
-  id: { type: Number, required: true },
+  id: { type: Number },
+  name: { type: String, required: true },
   location: { type: String, required: true },
+  image: { type: String, required: true },
   mapURL: { type: String, required: true },
   description: { type: String, required: true },
 });
