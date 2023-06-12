@@ -5,27 +5,48 @@ import styled from "styled-components";
 import { StyledLink } from "../../../components/StyledLink.js";
 import { StyledButton } from "../../../components/StyledButton.js";
 import { StyledImage } from "../../../components/StyledImage.js";
+import { MyStyledLink } from "../../../components/MyStyledLink.js";
 
 const ImageContainer = styled.div`
   position: relative;
-  height: 15rem;
+  height: 60vh;
+  top: -6px;
 `;
 
 const ButtonContainer = styled.section`
   display: flex;
+  margin: 0px auto;
+  max-width: 400px;
   justify-content: space-between;
-  gap: 0.2rem;
+  gap: 1rem;
+  padding: 12px 0px;
+  position: relative;
+  top: -20px;
 
   & > * {
-    flex-grow: 1;
+    width: 30vw;
+    min-width: 100px;
     text-align: center;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.12);
   }
 `;
 
 const StyledLocationLink = styled(StyledLink)`
   text-align: center;
   background-color: white;
-  border: 3px solid lightsalmon;
+  border: 1px solid black;
+  font-size: 0.8em;
+`;
+
+const Description = styled.div`
+  background-color: white;
+  padding: 0px 12px 24px 12px;
+  position: relative;
+  top: -18px;
+
+  & > h2 {
+    color: rgb(66, 135, 245);
+  }
 `;
 
 export default function DetailsPage() {
@@ -38,17 +59,20 @@ export default function DetailsPage() {
   if (!isReady || isLoading || error) return <h2>Loading...</h2>;
 
   async function deletePlace() {
-    await fetch(`/api/places/${id}`, {
-      method: "DELETE",
-    });
-    console.log("deleted?");
+    const confirmed = confirm("Are you sure you want to delete this item?");
+
+    !confirmed
+      ? console.log("not deleted")
+      : await fetch(`/api/places/${id}`, {
+          method: "DELETE",
+        });
     router.push("/");
   }
 
   return (
     <>
       <Link href={"/"} passHref legacyBehavior>
-        <StyledLink justifySelf="start">back</StyledLink>
+        <MyStyledLink justifySelf="start">← back</MyStyledLink>
       </Link>
       <ImageContainer>
         <StyledImage
@@ -61,13 +85,16 @@ export default function DetailsPage() {
           alt=""
         />
       </ImageContainer>
-      <h2>
-        {place.name}, {place.location}
-      </h2>
-      <Link href={place.mapURL} passHref legacyBehavior>
-        <StyledLocationLink>Location on Google Maps</StyledLocationLink>
-      </Link>
-      <p>{place.description}</p>
+      <Description>
+        <h2>
+          {place.name}, {place.location}
+        </h2>
+        <p>{place.description}</p>
+        <Link href={place.mapURL} passHref legacyBehavior>
+          <StyledLocationLink>Location on Google Maps</StyledLocationLink>
+        </Link>
+      </Description>
+
       <ButtonContainer>
         <Link href={`/places/${id}/edit`} passHref legacyBehavior>
           <StyledLink>Edit</StyledLink>
