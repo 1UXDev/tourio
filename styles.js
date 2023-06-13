@@ -49,4 +49,8 @@ export default createGlobalStyle`
     font-family: ${DancingScript.style.fontFamily};
     font-size:1.8em;
   }
+
+  .spacer{
+    height:1px;
+  }
 `;
