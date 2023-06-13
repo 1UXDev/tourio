@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { StyledButton } from "./StyledButton.js";
-import api from "../pages/api/unsplash";
+import api from "../db/unsplash.js";
 import { useState } from "react";
 
 const FormContainer = styled.form`
