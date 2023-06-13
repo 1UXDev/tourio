@@ -67,7 +67,7 @@ const Figcaption = styled.h3`
   color: rgb(66, 135, 245);
 `;
 
-export default function Card({ name, image, location, id }) {
+export default function Card({ name, image, location, id, counter }) {
   return (
     <Article>
       <ImageContainer>
@@ -78,6 +78,7 @@ export default function Card({ name, image, location, id }) {
               (max-width: 1200px) 50vw,
               33vw"
           alt=""
+          priority={counter}
         />
       </ImageContainer>
       <Figcaption>{name}</Figcaption>

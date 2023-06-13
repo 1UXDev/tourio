@@ -47,7 +47,7 @@ const FixedLink = styled(StyledLink)`
 `;
 export default function Home() {
   const { data } = useSWR("/api/places", { fallbackData: [] });
-
+  let counter = true;
   return (
     <>
       <List role="list">
@@ -59,6 +59,7 @@ export default function Home() {
                 image={place.image}
                 location={place.location}
                 id={place._id}
+                priority={counter}
               />
             </ListItem>
           );
