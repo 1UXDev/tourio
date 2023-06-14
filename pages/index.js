@@ -16,22 +16,22 @@ const List = styled.ul`
 const ListItem = styled.li`
   position: relative;
   width: 100%;
-  animation-duration: 1s;
-  animation-name: animate-fade;
-  animation-fill-mode: backwards;
-  animation-delay: 0.3s;
+  // animation-duration: 1s;
+  // animation-name: animate-fade;
+  // animation-fill-mode: backwards;
+  // animation-delay: 0.3s;
 
-  @keyframes animate-fade {
-    0% {
-      opacity: 0;
-      transform: scale(0.8, 0.8);
-      filter: blur(3px);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1, 1);
-      filter: blur(0px);
-    }
+  // @keyframes animate-fade {
+  //   0% {
+  //     opacity: 0;
+  //     transform: scale(0.8, 0.8);
+  //     filter: blur(3px);
+  //   }
+  //   100% {
+  //     opacity: 1;
+  //     transform: scale(1, 1);
+  //     filter: blur(0px);
+  //   }
   }
 `;
 const FixedLink = styled(StyledLink)`

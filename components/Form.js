@@ -47,6 +47,18 @@ const MyStyledButton = styled(StyledButton)`
   background-color: rgb(66, 135, 245);
   color: white;
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.12);
+
+  &:disabled {
+    background: grey;
+
+    &::before {
+      content: "Please check the image-url you provided. If in doubt, replace it with another from Unsplash.com";
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      margin-right: 5px;
+    }
+  }
 `;
 
 // --- Never used, no time to implement :(
@@ -88,6 +100,9 @@ const DynamicImageContainer = styled.div`
 export default function Form({ onSubmit, formName, defaultData }) {
   const [unsplashImage, SetUnsplashImage] = useState([]);
   const [imageSearch, SetImageSearch] = useState();
+  let selectedImage = null;
+  const formImageURLField = document.getElementById("image-url");
+  const submitButton = document.querySelector(`[type="submit"]`);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -105,12 +120,20 @@ export default function Form({ onSubmit, formName, defaultData }) {
     SetUnsplashImage(image);
   }
 
-  let selectedImage = null;
+  // if the user input image-url is not in the unsplash pattern, deactivate submit-button (& thus submit-event)
+  async function onURLChange() {
+    if (
+      !formImageURLField ||
+      formImageURLField !==
+        "^https://images.unsplash.com/photo-[a-zA-Z0-9_-]+?[a-zA-Z0-9_-]+$"
+    ) {
+      submitButton.disabled = true;
+    } else {
+      submitButton.disabled = false;
+    }
+  }
 
   function onSelectImage(image) {
-    //console.log("ImageSource", image);
-
-    const formImageURLField = document.getElementById("image-url");
     //console.log(formImageURLField.value);
     formImageURLField.value = image.urls.regular;
 
@@ -136,13 +159,16 @@ export default function Form({ onSubmit, formName, defaultData }) {
         onChange={onNameChange}
         required
       />
-      <Label htmlFor="image-url">Image Url</Label>
+      <Label htmlFor="image-url">Image Url from Unsplash.com</Label>
       <Input
         id="image-url"
         name="image"
         type="url"
         defaultValue={defaultData?.image}
         placeholder="Select one or paste your own from Unsplash.com"
+        //regEx created with ChatGPT
+        pattern="^https:\/\/images\.unsplash\.com\/photo-[a-zA-Z0-9_-]+\?[a-zA-Z0-9_-]+$"
+        onChange={onURLChange}
         required
       />
       <DynamicImageContainer>
