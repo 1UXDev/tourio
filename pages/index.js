@@ -32,7 +32,7 @@ const ListItem = styled.li`
   //     transform: scale(1, 1);
   //     filter: blur(0px);
   //   }
-  }
+  //}
 `;
 const FixedLink = styled(StyledLink)`
   position: fixed;
